@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OCR File Processor</title>
+    <link rel="icon" type="image/x-icon" href="/images/rupp_logo.png">
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='images/rupp_logo.png') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="top-section">
+            <div class="logo">
+                <img src="{{ url_for('static', filename='images/rupp_logo.png') }}" alt="University Logo">
+            </div>
+            <div class="title">
+                <h1>សាកលវិទ្យាល័យភូមិន្ទភ្នំពេញ</h1>
+                <h2>ROYAL UNIVERSITY OF PHNOM PENH</h2>
+            </div>
+        </div>
+        <div class="red-bar">
+            <p><strong>Faculty of Engineering</strong></p>
+            <p><strong>Department of IT Engineering</strong></p>
+        </div>
+    </header>
+    <div class="info_container">
+        <h1>Font Recognition and optical character recognition for Khmer letter in PDF or Image</h1>
+        <p>This project combines SVM for font recognition and pytesseract for OCR to extract and classify Khmer letters in PDFs or images. It efficiently identifies different fonts and converts Khmer text into machine-readable content, aiding in document digitization and analysis.</p>
+    </div>
+
+    <div class="form-container">
+        <h2 class="form-title">Upload Your File for Processing</h2>
+        <form id="upload-form" method="POST" enctype="multipart/form-data">
+            <label for="file">Choose a file[ .pdf , .jpg , .jpeg , .png , .bmp , .tiff ]:</label>
+            <input type="file" id="file" name="file" accept=".pdf, .jpg, .jpeg, .png, .bmp, .tiff" required>
+            <br><br>
+            <button type="submit" formaction="/detect">
+                <i class="fa-regular fa-eye"></i>
+                Detect
+            </button>
+            <button type="submit" formaction="/ocr">
+                <i class="fa-regular fa-pen-to-square"></i>
+                OCR
+            </button>
+        </form>
+    </div>
+    
+    {% if font_name and doc_text %}
+    <div id="result-container" class="result-container">
+        <h2>OCR and Font Detection Result</h2>
+        <p><strong>Detected Font:</strong> {{ font_name }}</p>
+        <p><strong>Document Text:</strong></p>
+        <div class="doc-content">
+            <pre>{{ doc_text }}</pre>
+        </div>
+        <br>
+        <a href="{{ url_for('download', filename=download_link) }}" class="download-button">Download DOCX</a>
+        <i class="fa-solid fa-download"></i>
+    </div>
+    {% endif %}
+    
+    <script>
+        // Show result after form submission (handled by Flask)
+        if (document.getElementById("result-container")) {
+            document.getElementById("result-container").style.display = 'block';
+        }
+    </script>
+</body>
+</html>
