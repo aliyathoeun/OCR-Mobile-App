@@ -30,26 +30,17 @@ KhmerOCR-Mobile-App is a mobile application that uses Optical Character Recognit
    git clone https://github.com/your-username/KhmerOCR-Mobile-App.git
 Install dependencies:
 
-bash
-Copy
-Edit
 npm install
 Run the app:
 
-bash
-Copy
-Edit
+
 npx expo start
 or for React Native CLI:
 
-bash
-Copy
-Edit
+
 npx react-native run-android
 📦 Folder Structure
-php
-Copy
-Edit
+
 KhmerOCR-Mobile-App/
 │
 ├── src/                 # Main app source code
@@ -64,6 +55,7 @@ KhmerOCR-Mobile-App/
 ├── vite.config.js
 └── README.md
 🔤 Khmer OCR Engine Info
+
 This app uses an OCR engine trained to detect Khmer script. It supports both printed and certain handwritten text recognition with high accuracy.
 
 📄 License
